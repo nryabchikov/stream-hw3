@@ -26,8 +26,8 @@ public class Main {
 //        task5();
 //        task6();
 //        task7();
-        task8();
-//        task9();
+//        task8();
+        task9();
 //        task10();
 //        task11();
 //        task12();
@@ -135,7 +135,13 @@ public class Main {
 
     public static void task9() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        animals.stream()
+                .map(Animal::getBread)
+                .map(String::toCharArray)
+                .map(chars -> chars.length)
+                .min(Integer::compareTo)
+                .ifPresent(System.out::println);
     }
 
     public static void task10() {
