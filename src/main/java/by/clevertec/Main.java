@@ -9,38 +9,56 @@ import by.clevertec.model.Person;
 import by.clevertec.model.Student;
 import by.clevertec.util.Util;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 public class Main {
 
     public static void main(String[] args) {
         task1();
-        task2();
-        task3();
-        task4();
-        task5();
-        task6();
-        task7();
-        task8();
-        task9();
-        task10();
-        task11();
-        task12();
-        task13();
-        task14();
-        task15();
-        task16();
-        task17();
-        task18();
-        task19();
-        task20();
-        task21();
-        task22();
+//        task2();
+//        task3();
+//        task4();
+//        task5();
+//        task6();
+//        task7();
+//        task8();
+//        task9();
+//        task10();
+//        task11();
+//        task12();
+//        task13();
+//        task14();
+//        task15();
+//        task16();
+//        task17();
+//        task18();
+//        task19();
+//        task20();
+//        task21();
+//        task22();
     }
 
     public static void task1() {
+        final int MIN_AGE = 10;
+        final int MAX_AGE = 20;
+        final int GROUP_SIZE = 7;
+        final int NUM_OF_ZOO = 2;
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+        AtomicInteger size = new AtomicInteger(0);
+
+        Map<Integer, List<Animal>> groupedAnimals = animals.stream()
+                .filter(animal -> animal.getAge() >= MIN_AGE)
+                .filter(animal -> animal.getAge() <= MAX_AGE)
+                .sorted(Comparator.comparingDouble(Animal::getAge))
+                .collect(Collectors.groupingBy(
+                        animal -> size.getAndIncrement() / GROUP_SIZE));
+
+        groupedAnimals.get(NUM_OF_ZOO).forEach(System.out::println);
     }
 
     public static void task2() {
