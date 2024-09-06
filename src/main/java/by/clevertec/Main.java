@@ -23,8 +23,8 @@ public class Main {
 //        task2();
 //        task3();
 //        task4();
-        task5();
-//        task6();
+//        task5();
+        task6();
 //        task7();
 //        task8();
 //        task9();
@@ -109,7 +109,9 @@ public class Main {
 
     public static void task6() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        System.out.println(animals.stream()
+                .allMatch(animal -> animal.getGender().equals("Female") || animal.getGender().equals("Male")));
     }
 
     public static void task7() {
