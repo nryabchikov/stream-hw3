@@ -9,6 +9,8 @@ import by.clevertec.model.Person;
 import by.clevertec.model.Student;
 import by.clevertec.util.Util;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -29,8 +31,8 @@ public class Main {
 //        task8();
 //        task9();
 //        task10();
-        task11();
-//        task12();
+//        task11();
+        task12();
 //        task13();
 //        task14();
 //        task15();
@@ -163,8 +165,18 @@ public class Main {
     }
 
     public static void task12() {
-        List<Person> persons = Util.getPersons();
-//        persons.stream() Продолжить ...
+        final int MIN_AGE = 18;
+        final int MAX_AGE = 27;
+        final int MAX_AMOUNT = 200;
+        List<Person> people = Util.getPersons();
+
+        people.stream()
+                .filter(person -> person.getGender().equals("Male"))
+                .filter(person -> Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() >= MIN_AGE)
+                .filter(person -> Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() <= MAX_AGE)
+                .sorted(Comparator.comparing(Person::getRecruitmentGroup))
+                .limit(MAX_AMOUNT)
+                .forEach(System.out::println);
     }
 
     public static void task13() {
