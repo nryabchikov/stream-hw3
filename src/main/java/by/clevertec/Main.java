@@ -22,8 +22,8 @@ public class Main {
 //        task1();
 //        task2();
 //        task3();
-        task4();
-//        task5();
+//        task4();
+        task5();
 //        task6();
 //        task7();
 //        task8();
@@ -97,8 +97,14 @@ public class Main {
     }
 
     public static void task5() {
+        final int MIN_AGE = 20;
+        final int MAX_AGE = 30;
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        System.out.println(animals.stream()
+                .filter(animal -> animal.getAge() >= MIN_AGE)
+                .filter(animal -> animal.getAge() <= MAX_AGE)
+                .anyMatch(animal -> animal.getOrigin().equals("Hungarian")));
     }
 
     public static void task6() {
