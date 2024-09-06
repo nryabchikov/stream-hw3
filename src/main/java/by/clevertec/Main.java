@@ -25,8 +25,8 @@ public class Main {
 //        task4();
 //        task5();
 //        task6();
-        task7();
-//        task8();
+//        task7();
+        task8();
 //        task9();
 //        task10();
 //        task11();
@@ -122,8 +122,15 @@ public class Main {
     }
 
     public static void task8() {
+        final int MAX_AMOUNT = 100;
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        animals.stream()
+                .sorted(Comparator.comparing(Animal::getBread))
+                .limit(MAX_AMOUNT)
+                .map(Animal::getAge)
+                .max(Integer::compareTo)
+                .ifPresent(System.out::println);
     }
 
     public static void task9() {
