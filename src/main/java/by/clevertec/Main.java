@@ -20,8 +20,8 @@ public class Main {
 
     public static void main(String[] args) {
 //        task1();
-        task2();
-//        task3();
+//        task2();
+        task3();
 //        task4();
 //        task5();
 //        task6();
@@ -76,8 +76,16 @@ public class Main {
     }
 
     public static void task3() {
+        final int ANIMAL_AGE = 30;
+        final char START_LETTER = 'A';
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        animals.stream()
+                .filter(animal -> animal.getAge() > ANIMAL_AGE)
+                .map(Animal::getOrigin)
+                .filter(s -> s.charAt(0) == START_LETTER)
+                .distinct()
+                .forEach(System.out::println);
     }
 
     public static void task4() {
