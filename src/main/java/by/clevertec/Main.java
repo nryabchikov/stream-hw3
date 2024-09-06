@@ -19,8 +19,8 @@ import java.util.stream.Collectors;
 public class Main {
 
     public static void main(String[] args) {
-        task1();
-//        task2();
+//        task1();
+        task2();
 //        task3();
 //        task4();
 //        task5();
@@ -63,7 +63,16 @@ public class Main {
 
     public static void task2() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        animals.stream()
+                .filter(animal -> animal.getOrigin().equals("Japanese"))
+                .map(animal -> {
+                    if (animal.getGender().equals("Female")) {
+                        return animal.getBread().toUpperCase();
+                    }
+                    return animal.getBread();
+                })
+                .forEach(System.out::println);
     }
 
     public static void task3() {
