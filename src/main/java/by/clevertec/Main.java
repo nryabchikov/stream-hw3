@@ -24,8 +24,8 @@ public class Main {
 //        task3();
 //        task4();
 //        task5();
-        task6();
-//        task7();
+//        task6();
+        task7();
 //        task8();
 //        task9();
 //        task10();
@@ -116,7 +116,9 @@ public class Main {
 
     public static void task7() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        System.out.println(animals.stream()
+                .noneMatch(animal -> animal.getOrigin().equals("Oceania")));
     }
 
     public static void task8() {
