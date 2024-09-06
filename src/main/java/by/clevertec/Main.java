@@ -28,8 +28,8 @@ public class Main {
 //        task7();
 //        task8();
 //        task9();
-        task10();
-//        task11();
+//        task10();
+        task11();
 //        task12();
 //        task13();
 //        task14();
@@ -154,7 +154,12 @@ public class Main {
 
     public static void task11() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        animals.stream()
+                .filter(animal -> animal.getOrigin().equals("Indonesian"))
+                .mapToInt(Animal::getAge)
+                .average()
+                .ifPresent(System.out::println);
     }
 
     public static void task12() {
