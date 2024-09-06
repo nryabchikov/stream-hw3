@@ -27,8 +27,8 @@ public class Main {
 //        task6();
 //        task7();
 //        task8();
-        task9();
-//        task10();
+//        task9();
+        task10();
 //        task11();
 //        task12();
 //        task13();
@@ -146,7 +146,10 @@ public class Main {
 
     public static void task10() {
         List<Animal> animals = Util.getAnimals();
-//        animals.stream() Продолжить ...
+
+        System.out.println(animals.stream()
+                .mapToInt(Animal::getAge)
+                .sum());
     }
 
     public static void task11() {
