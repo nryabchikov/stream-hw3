@@ -11,12 +11,15 @@ import by.clevertec.util.Util;
 
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 public class Main {
@@ -34,8 +37,8 @@ public class Main {
 //        task10();
 //        task11();
 //        task12();
-        task13();
-//        task14();
+//        task13();
+        task14();
 //        task15();
 //        task16();
 //        task17();
@@ -211,7 +214,72 @@ public class Main {
 
     public static void task14() {
         List<Car> cars = Util.getCars();
-//        cars.stream() Продолжить ...
+
+        List<Car> turkmenistanCars = cars.stream()
+                .filter(car -> car.getCarMake().equals("Jaguar") ||
+                        car.getColor().equals("White"))
+                .toList();
+
+        cars.removeAll(turkmenistanCars);
+
+        final int MAX_CAR_WEIGHT = 1500;
+        List<Car> uzbekCars = cars.stream()
+                .filter(car -> car.getMass() < MAX_CAR_WEIGHT)
+                .filter(car -> car.getCarModel().equals("BMW") ||
+                        car.getCarModel().equals("Lexus") ||
+                        car.getCarModel().equals("Chrysler") ||
+                        car.getCarModel().equals("Toyota"))
+                .toList();
+
+        cars.removeAll(uzbekCars);
+
+        final int MIN_CAR_WEIGHT = 4000;
+        List<Car> kazakhCars = cars.stream()
+                .filter(car -> car.getMass() > MIN_CAR_WEIGHT && car.getColor().equals("BLACK")
+                        || car.getCarMake().equals("GMC")
+                        || car.getCarMake().equals("Dodge")
+                ).toList();
+
+        cars.removeAll(kazakhCars);
+
+        final int MAX_RELEASE_YEAR = 1982;
+        List<Car> kyrgyzCars = cars.stream()
+                .filter(car -> car.getReleaseYear() < MAX_RELEASE_YEAR
+                        || car.getCarMake().equals("Cherokee")
+                        || car.getCarMake().equals("Civic")
+                ).toList();
+
+        cars.removeAll(kyrgyzCars);
+
+        final int MIN_PRICE = 40000;
+        List<Car> russianCars = cars.stream()
+                .filter(car -> car.getPrice() > MIN_PRICE
+                        || !(car.getColor().equals("Yellow")
+                        || car.getCarMake().equals("Blue")
+                        || car.getCarMake().equals("Green")
+                        || car.getCarMake().equals("Red"))
+                ).toList();
+
+        cars.removeAll(russianCars);
+
+        List<Car> mongolCars = cars.stream()
+                .filter(car -> car.getVin().contains("59")
+                ).toList();
+
+        double price = 7.14;
+
+        List<List<Car>> filteredCars =
+                Stream.of(turkmenistanCars, uzbekCars, kazakhCars, kyrgyzCars, russianCars, mongolCars).toList();
+
+        final int kilogramToTon = 1000;
+        List<Double> costs = new ArrayList<>();
+        for (List<Car> echelons: filteredCars) {
+            double resultPrice = echelons.stream().mapToDouble(Car::getMass).sum() / kilogramToTon * price;
+            costs.add(resultPrice);
+        }
+
+        costs.forEach(System.out::println);
+        System.out.println(costs.stream().mapToDouble(cost -> cost).sum());
     }
 
     public static void task15() {
