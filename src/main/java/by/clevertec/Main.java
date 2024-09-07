@@ -38,8 +38,8 @@ public class Main {
 //        task11();
 //        task12();
 //        task13();
-        task14();
-//        task15();
+//        task14();
+        task15();
 //        task16();
 //        task17();
 //        task18();
@@ -283,8 +283,25 @@ public class Main {
     }
 
     public static void task15() {
+        final double WATER_PRICE = 1.39;
+        final int YEARS = 5;
+        final int DAY_IN_YEAR = 365;
         List<Flower> flowers = Util.getFlowers();
-//        flowers.stream() Продолжить ...
+
+        System.out.println(flowers.stream()
+                .sorted(Comparator.comparing(Flower::getOrigin).reversed()
+                        .thenComparing(Flower::getPrice)
+                        .thenComparing(Flower::getWaterConsumptionPerDay).reversed())
+                .filter(flower -> flower.getCommonName().compareTo("S") <= 0)
+                .filter(flower -> flower.getCommonName().compareTo("C") >= 0)
+                .filter(Flower::isShadePreferred)
+                .filter(flower -> flower.getFlowerVaseMaterial().stream()
+                        .anyMatch(material -> material.equals("Glass")
+                                || material.equals("Aluminium")
+                                || material.equals("Steel")))
+                .mapToDouble(flower ->
+                        flower.getPrice() + flower.getWaterConsumptionPerDay() * DAY_IN_YEAR * YEARS * WATER_PRICE)
+                .sum());
     }
 
     public static void task16() {
