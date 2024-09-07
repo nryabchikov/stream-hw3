@@ -39,8 +39,8 @@ public class Main {
 //        task12();
 //        task13();
 //        task14();
-        task15();
-//        task16();
+//        task15();
+        task16();
 //        task17();
 //        task18();
 //        task19();
@@ -305,8 +305,13 @@ public class Main {
     }
 
     public static void task16() {
+        final int MAX_STUDENT_AGE = 18;
         List<Student> students = Util.getStudents();
-//        students.stream() Продолжить ...
+
+        students.stream()
+                .filter(student -> student.getAge() <= MAX_STUDENT_AGE)
+                .sorted(Comparator.comparing(Student::getSurname))
+                .forEach(student -> System.out.println(student.getSurname() + ": " + student.getAge()));
     }
 
     public static void task17() {
