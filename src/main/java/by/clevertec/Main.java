@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Main {
 
@@ -32,8 +33,8 @@ public class Main {
 //        task9();
 //        task10();
 //        task11();
-        task12();
-//        task13();
+//        task12();
+        task13();
 //        task14();
 //        task15();
 //        task16();
@@ -180,8 +181,32 @@ public class Main {
     }
 
     public static void task13() {
+        final int MIN_AGE = 18;
+        final int MAX_AGE = 63;
+        final int MAX_AMOUNT_OF_PEOPLE = 500;
         List<House> houses = Util.getHouses();
-//        houses.stream() Продолжить ...
+
+        Stream<Person> hospitalPeople = houses.stream()
+                .filter(house -> house.getBuildingType().equals("Hospital"))
+                .flatMap(house -> house.getPersonList().stream());
+
+        Stream<Person> youngAndOldPeople = houses.stream()
+                .filter(house -> !house.getBuildingType().equals("Hospital"))
+                .flatMap(house -> house.getPersonList().stream())
+                .filter(person -> Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() <= MIN_AGE
+                        || Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() >= MAX_AGE);
+
+        Stream<Person> otherPeople = houses.stream()
+                .filter(house -> !house.getBuildingType().equals("Hospital"))
+                .flatMap(house -> house.getPersonList().stream())
+                .filter(person -> Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() > MIN_AGE
+                        || Period.between(person.getDateOfBirth(), LocalDate.now()).getYears() < MAX_AGE);
+
+        Stream<Person> hospitalAndYoungAndOldPeople = Stream.concat(hospitalPeople, youngAndOldPeople);
+        Stream.concat(hospitalAndYoungAndOldPeople, otherPeople)
+                .limit(MAX_AMOUNT_OF_PEOPLE)
+                .forEach(System.out::println);
+
     }
 
     public static void task14() {
