@@ -41,8 +41,8 @@ public class Main {
 //        task14();
 //        task15();
 //        task16();
-        task17();
-//        task18();
+//        task17();
+        task18();
 //        task19();
 //        task20();
 //        task21();
@@ -325,8 +325,14 @@ public class Main {
 
     public static void task18() {
         List<Student> students = Util.getStudents();
-        List<Examination> examinations = Util.getExaminations();
-//        students.stream() Продолжить ...
+
+        Map<String, Double> groupedStudents = students.stream()
+                .collect(Collectors.groupingBy(Student::getFaculty,
+                        Collectors.averagingInt(Student::getAge)));
+
+        groupedStudents.entrySet().stream()
+                .sorted(Map.Entry.comparingByValue(Comparator.reverseOrder()))
+                .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
     }
 
     public static void task19() {
