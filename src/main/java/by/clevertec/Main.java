@@ -42,8 +42,8 @@ public class Main {
 //        task15();
 //        task16();
 //        task17();
-        task18();
-//        task19();
+//        task18();
+        task19("P-1");
 //        task20();
 //        task21();
 //        task22();
@@ -335,9 +335,17 @@ public class Main {
                 .forEach(entry -> System.out.println(entry.getKey() + ": " + entry.getValue()));
     }
 
-    public static void task19() {
+    public static void task19(String group) {
+        final int MIN_MARK = 4;
         List<Student> students = Util.getStudents();
-//        students.stream() Продолжить ...
+        List<Examination> examinations = Util.getExaminations();
+
+        students.stream()
+                .filter(student -> student.getGroup().equals(group))
+                .filter(student -> examinations.stream()
+                        .anyMatch(examination -> examination.getStudentId() == student.getId() &&
+                                examination.getExam3() > MIN_MARK))
+                .forEach(System.out::println);
     }
 
     public static void task20() {
