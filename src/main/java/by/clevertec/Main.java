@@ -43,8 +43,8 @@ public class Main {
 //        task16();
 //        task17();
 //        task18();
-        task19("P-1");
-//        task20();
+//        task19("P-1");
+        task20();
 //        task21();
 //        task22();
     }
@@ -350,7 +350,18 @@ public class Main {
 
     public static void task20() {
         List<Student> students = Util.getStudents();
-//        students.stream() Продолжить ...
+        List<Examination> examinations = Util.getExaminations();
+
+        Map<String, Double> groupedStudentsWithAverageFacultyMark = students.stream()
+                .collect(Collectors.groupingBy(Student::getFaculty, Collectors.averagingDouble(
+                        student -> examinations.stream()
+                                .filter(examination -> examination.getStudentId() == student.getId())
+                                .mapToInt(Examination::getExam1)
+                                .average().orElse(0.0))));
+
+        groupedStudentsWithAverageFacultyMark.entrySet().stream()
+                .max(Map.Entry.comparingByValue())
+                .ifPresent(faculty -> System.out.println(faculty.getKey()));
     }
 
     public static void task21() {
