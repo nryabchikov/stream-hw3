@@ -22,17 +22,17 @@ import java.util.stream.Stream;
 public class Main {
 
     public static void main(String[] args) {
-        task1();
-        task2();
-        task3();
-        task4();
-        task5();
-        task6();
-        task7();
-        task8();
-        task9();
-        task10();
-        task11();
+        task1().forEach(System.out::println);
+        task2().forEach(System.out::println);
+        task3().forEach(System.out::println);
+        System.out.println(task4());
+       System.out.println(task5());
+        System.out.println(task6());
+        System.out.println(task7());
+        System.out.println(task8());
+        System.out.println(task9());
+        System.out.println(task10());
+        System.out.println(task11());
         task12();
         task13();
         task14();
@@ -46,7 +46,7 @@ public class Main {
         task22();
     }
 
-    public static void task1() {
+    public static List<Animal> task1() {
         final int MIN_AGE = 10;
         final int MAX_AGE = 20;
         final int GROUP_SIZE = 7;
@@ -54,115 +54,109 @@ public class Main {
         List<Animal> animals = Util.getAnimals();
         AtomicInteger size = new AtomicInteger(0);
 
-        Map<Integer, List<Animal>> groupedAnimals = animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getAge() >= MIN_AGE)
                 .filter(animal -> animal.getAge() <= MAX_AGE)
                 .sorted(Comparator.comparingDouble(Animal::getAge))
                 .collect(Collectors.groupingBy(
-                        animal -> size.getAndIncrement() / GROUP_SIZE));
-
-        groupedAnimals.get(NUM_OF_ZOO).forEach(System.out::println);
+                        animal -> size.getAndIncrement() / GROUP_SIZE))
+                .get(NUM_OF_ZOO);
     }
 
-    public static void task2() {
+    public static List<Animal> task2() {
         List<Animal> animals = Util.getAnimals();
 
-        animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getOrigin().equals("Japanese"))
-                .map(animal -> {
+                .peek(animal -> {
                     if (animal.getGender().equals("Female")) {
-                        return animal.getBread().toUpperCase();
+                        animal.setBread(animal.getBread().toUpperCase());
                     }
-                    return animal.getBread();
-                })
-                .forEach(System.out::println);
+                }).toList();
     }
 
-    public static void task3() {
+    public static List<String> task3() {
         final int ANIMAL_AGE = 30;
         final char START_LETTER = 'A';
         List<Animal> animals = Util.getAnimals();
 
-        animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getAge() > ANIMAL_AGE)
                 .map(Animal::getOrigin)
                 .filter(s -> s.charAt(0) == START_LETTER)
                 .distinct()
-                .forEach(System.out::println);
+                .toList();
     }
 
-    public static void task4() {
+    public static long task4() {
         List<Animal> animals = Util.getAnimals();
 
-        System.out.println(animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getGender().equals("Female"))
-                .count());
+                .count();
     }
 
-    public static void task5() {
+    public static boolean task5() {
         final int MIN_AGE = 20;
         final int MAX_AGE = 30;
         List<Animal> animals = Util.getAnimals();
 
-        System.out.println(animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getAge() >= MIN_AGE)
                 .filter(animal -> animal.getAge() <= MAX_AGE)
-                .anyMatch(animal -> animal.getOrigin().equals("Hungarian")));
+                .anyMatch(animal -> animal.getOrigin().equals("Hungarian"));
     }
 
-    public static void task6() {
+    public static boolean task6() {
         List<Animal> animals = Util.getAnimals();
 
-        System.out.println(animals.stream()
-                .allMatch(animal -> animal.getGender().equals("Female") || animal.getGender().equals("Male")));
+        return animals.stream()
+                .allMatch(animal -> animal.getGender().equals("Female") || animal.getGender().equals("Male"));
     }
 
-    public static void task7() {
+    public static boolean task7() {
         List<Animal> animals = Util.getAnimals();
 
-        System.out.println(animals.stream()
-                .noneMatch(animal -> animal.getOrigin().equals("Oceania")));
+        return animals.stream()
+                .noneMatch(animal -> animal.getOrigin().equals("Oceania"));
     }
 
-    public static void task8() {
+    public static int task8() {
         final int MAX_AMOUNT = 100;
         List<Animal> animals = Util.getAnimals();
 
-        animals.stream()
+        return animals.stream()
                 .sorted(Comparator.comparing(Animal::getBread))
                 .limit(MAX_AMOUNT)
                 .map(Animal::getAge)
-                .max(Integer::compareTo)
-                .ifPresent(System.out::println);
+                .max(Integer::compareTo).orElse(0);
     }
 
-    public static void task9() {
+    public static int task9() {
         List<Animal> animals = Util.getAnimals();
 
-        animals.stream()
+        return animals.stream()
                 .map(Animal::getBread)
                 .map(String::toCharArray)
                 .map(chars -> chars.length)
-                .min(Integer::compareTo)
-                .ifPresent(System.out::println);
+                .min(Integer::compareTo).orElse(0);
     }
 
-    public static void task10() {
+    public static int task10() {
         List<Animal> animals = Util.getAnimals();
 
-        System.out.println(animals.stream()
+        return animals.stream()
                 .mapToInt(Animal::getAge)
-                .sum());
+                .sum();
     }
 
-    public static void task11() {
+    public static double task11() {
         List<Animal> animals = Util.getAnimals();
 
-        animals.stream()
+        return animals.stream()
                 .filter(animal -> animal.getOrigin().equals("Indonesian"))
                 .mapToInt(Animal::getAge)
-                .average()
-                .ifPresent(System.out::println);
+                .average().orElse(0.0);
     }
 
     public static void task12() {
