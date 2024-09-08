@@ -1,25 +1,22 @@
-package by.clevertec;
+package ru.clevertec;
 
-import by.clevertec.model.Animal;
-import by.clevertec.model.Car;
-import by.clevertec.model.Examination;
-import by.clevertec.model.Flower;
-import by.clevertec.model.House;
-import by.clevertec.model.Person;
-import by.clevertec.model.Student;
-import by.clevertec.util.Util;
+import ru.clevertec.model.Animal;
+import ru.clevertec.model.Car;
+import ru.clevertec.model.Examination;
+import ru.clevertec.model.Flower;
+import ru.clevertec.model.House;
+import ru.clevertec.model.Person;
+import ru.clevertec.model.Student;
+import ru.clevertec.util.Util;
 
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
 import java.util.stream.Stream;
 
 public class Main {

@@ -1,14 +1,14 @@
-package by.clevertec.util;
+package ru.clevertec.util;
 
-import by.clevertec.model.Animal;
-import by.clevertec.model.Car;
-import by.clevertec.model.Examination;
-import by.clevertec.model.Flower;
-import by.clevertec.model.House;
-import by.clevertec.model.Person;
-import by.clevertec.model.Student;
-import by.clevertec.util.reader.JsonReader;
-import by.clevertec.util.reader.Reader;
+import ru.clevertec.model.Animal;
+import ru.clevertec.model.Car;
+import ru.clevertec.model.Examination;
+import ru.clevertec.model.Flower;
+import ru.clevertec.model.House;
+import ru.clevertec.model.Person;
+import ru.clevertec.model.Student;
+import ru.clevertec.util.reader.JsonReader;
+import ru.clevertec.util.reader.Reader;
 import com.fasterxml.jackson.core.type.TypeReference;
 
 import java.util.List;

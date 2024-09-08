@@ -1,4 +1,4 @@
-package by.clevertec.model;
+package ru.clevertec.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,11 +7,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Animal {
+public class Examination {
 
     private int id;
-    private String bread;
-    private int age;
-    private String origin;
-    private String gender;
+    private int studentId;
+    private int exam1;
+    private int exam2;
+    private int exam3;
 }
