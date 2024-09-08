@@ -44,8 +44,8 @@ public class Main {
 //        task17();
 //        task18();
 //        task19("P-1");
-        task20();
-//        task21();
+//        task20();
+        task21();
 //        task22();
     }
 
@@ -366,7 +366,10 @@ public class Main {
 
     public static void task21() {
         List<Student> students = Util.getStudents();
-//        students.stream() Продолжить ...
+
+        students.stream()
+                .collect(Collectors.groupingBy(Student::getGroup, Collectors.counting()))
+                .forEach((key, value) -> System.out.println(key + ": " + value));
     }
 
     public static void task22() {
