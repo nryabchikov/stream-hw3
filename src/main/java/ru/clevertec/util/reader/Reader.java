@@ -1,4 +1,4 @@
-package by.clevertec.util.reader;
+package ru.clevertec.util.reader;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 

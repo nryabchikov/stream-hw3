@@ -1,6 +1,6 @@
-package by.clevertec.util.reader;
+package ru.clevertec.util.reader;
 
-import by.clevertec.exception.IOFileException;
+import ru.clevertec.exception.IOFileException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

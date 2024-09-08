@@ -1,4 +1,4 @@
-package by.clevertec.exception;
+package ru.clevertec.exception;
 
 public class IOFileException extends RuntimeException {
 
